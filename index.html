@@ -582,6 +582,40 @@ const audio = {
 const SCENE_KEYS = ["huh", "happy", "letmeknow", "maxwell"];
 const NO_KEYS = ["no1", "no2", "no3", "no4"];
 
+// ---------------------------
+// Asset Preloader (GIF + MP3)
+// ---------------------------
+const IMAGE_URLS = [
+  "assets/huh.gif",
+  "assets/cat-jump.gif",
+  "assets/romantice-cat.gif",
+  "assets/maxwell-the-cat.gif",
+  "assets/cat-crying-cat.gif",
+  "assets/the-voices.gif",
+  "assets/cat-meme-hehehe.gif",
+  "assets/sus-cat-cat-sus.gif",
+];
+
+function preloadImages(urls) {
+  return Promise.all(
+    urls.map((url) => new Promise((resolve) => {
+      const img = new Image();
+      img.onload = resolve;
+      img.onerror = resolve;
+      img.src = url;
+    }))
+  );
+}
+
+function preloadAudio() {
+  Object.values(audio.sounds).forEach((a) => {
+    try {
+      a.preload = "auto";
+      a.load();
+    } catch (e) {}
+  });
+}
+
 // track which bg scene is currently playing
 audio.currentSceneKey = null;
 
@@ -1019,6 +1053,9 @@ function goToFrame4() {
       createFloatingHearts();
       setBgVibe("bg-vibe-1");
       setProgress(1);
+        preloadAudio();
+  preloadImages(IMAGE_URLS);
+
       bindMemeMeow("meme1", "huh");
 bindMemeMeow("meme2", "happy");
 bindMemeMeow("meme4", "maxwell");
