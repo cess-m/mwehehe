@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>mwehehe by cess</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Pacifico&display=swap" rel="stylesheet" />
+
+  <style>
+    :root{
+      --pink-1:#fff1f2;
+      --pink-2:#fce7f3;
+      --pink-3:#fbcfe8;
+      --pink-4:#fda4af;
+      --hot:#ec4899;
+      --red:#f43f5e;
+      --amber:#fb923c;
+      --text:#111827;
+      --muted:#6b7280;
+      --glass: rgba(255,255,255,0.78);
+      --glass-strong: rgba(255,255,255,0.90);
+      --shadow: 0 25px 80px rgba(0,0,0,0.16);
+      --radius: 34px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+      color: var(--text);
+    }
+
+    /* Background */
+    .bg-gradient {
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      background: linear-gradient(-45deg, var(--pink-1), var(--pink-2), var(--pink-3), #ffffff);
+      background-size: 500% 500%;
+      animation: gradientShift 16s ease infinite;
+      transition: 0.8s ease;
+    }
+
+    .bg-vibe-1 { 
+        background: linear-gradient(-45deg, #ffffff, #f8fafc, #f1f5f9, #ffffff);
+        background-size: 500% 500%;
+        }
+    .bg-vibe-2 { background: linear-gradient(-45deg, var(--pink-2), var(--pink-3), #ffe4e6, #fff7ed); background-size: 500% 500%; }
+    .bg-vibe-3 { background: linear-gradient(-45deg, #ffe4e6, #fce7f3, #fff7ed, #fdf2f8); background-size: 500% 500%; }
+    .bg-vibe-4 { background: linear-gradient(-45deg, #dcfce7, #bbf7d0, #fce7f3, #fff1f2); background-size: 500% 500%; }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Floating hearts */
+    .floating-hearts {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -2;
+      opacity: 0.16;
+      filter: blur(0.2px);
+    }
+    .floating-heart {
+      position: absolute;
+      animation: float 10s infinite ease-in-out;
+      opacity: 0.7;
+      will-change: transform;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      25% { transform: translateY(-30px) rotate(7deg); }
+      50% { transform: translateY(-70px) rotate(-7deg); }
+      75% { transform: translateY(-30px) rotate(4deg); }
+    }
+
+    /* Particles */
+    .particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9998;
+    }
+    .particle {
+      position: absolute;
+      font-size: 26px;
+      opacity: 0;
+      animation: particleFloat 2.8s ease-out forwards;
+    }
+    @keyframes particleFloat {
+      0% { opacity: 1; transform: translateY(0) scale(0.2) rotate(0deg); }
+      50% { opacity: 1; }
+      100% { opacity: 0; transform: translateY(-85vh) scale(1.35) rotate(720deg); }
+    }
+
+    /* Top HUD */
+    .hud {
+      position: fixed;
+      top: calc(14px + env(safe-area-inset-top));
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(900px, calc(100% - 24px));
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      z-index: 9999;
+      pointer-events: none;
+    }
+    .pill {
+      pointer-events: auto;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(255,255,255,0.65);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.10);
+      border-radius: 999px;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .progress-wrap { gap: 10px; }
+    .progress-bar {
+      width: 180px;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(236, 72, 153, 0.12);
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 25%;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--hot), var(--red), var(--amber));
+      transition: width 380ms ease;
+    }
+    .progress-text {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      white-space: nowrap;
+    }
+
+    .sound-btn {
+      border: 0;
+      cursor: pointer;
+      padding: 10px 12px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 12px;
+      background: linear-gradient(135deg, var(--hot), var(--red));
+      color: white;
+      box-shadow: 0 12px 30px rgba(236,72,153,0.28);
+      transition: transform 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sound-btn:hover { transform: translateY(-1px) scale(1.02); }
+    .sound-btn:active { transform: translateY(0px) scale(0.99); }
+    .sound-state {
+      font-weight: 800;
+      background: rgba(255,255,255,0.24);
+      padding: 5px 9px;
+      border-radius: 999px;
+    }
+
+    /* Frames */
+    .frame {
+      display: none;
+      min-height: 100vh;
+      justify-content: center;
+      align-items: center;
+      padding: 92px 18px 24px;
+      position: relative;
+      z-index: 1;
+    }
+    .frame.active {
+      display: flex;
+      animation: fadeInScale 0.62s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    @keyframes fadeInScale {
+      from { opacity: 0; transform: scale(0.86) translateY(26px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    /* Card */
+    .card {
+      background: var(--glass);
+      backdrop-filter: blur(14px);
+      border-radius: var(--radius);
+      padding: 46px 36px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.75);
+      max-width: 690px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -60%;
+      background: radial-gradient(circle at 30% 30%, rgba(236,72,153,0.14), transparent 45%),
+                  radial-gradient(circle at 70% 70%, rgba(251,146,60,0.10), transparent 50%),
+                  linear-gradient(45deg, transparent, rgba(255,255,255,0.25), transparent);
+      transform: rotate(10deg);
+      animation: shimmer 5s ease-in-out infinite;
+    }
+    @keyframes shimmer {
+      0% { transform: translateX(-4%) translateY(-2%) rotate(10deg); }
+      50% { transform: translateX(4%) translateY(2%) rotate(10deg); }
+      100% { transform: translateX(-4%) translateY(-2%) rotate(10deg); }
+    }
+    .card-content { position: relative; z-index: 1; }
+
+    /* Meme */
+    .meme-container { margin-bottom: 22px; position: relative; }
+    .meme-img {
+      max-width: 320px;
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 28px;
+      box-shadow: 0 18px 46px rgba(0,0,0,0.18);
+      border: 4px solid rgba(255,255,255,0.95);
+      transition: transform 0.25s ease, filter 0.25s ease;
+      user-select: none;
+    }
+    .meme-img:hover { transform: scale(1.05) rotate(1.6deg); filter: saturate(1.05) contrast(1.02); }
+
+    /* Typography */
+    h1 {
+      font-size: 2.75rem;
+      font-weight: 900;
+      margin-bottom: 14px;
+      background: linear-gradient(135deg, var(--hot), var(--red), var(--amber));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.15;
+    }
+    .subtitle {
+      font-family: "Pacifico", cursive;
+      font-size: 1.55rem;
+      color: var(--hot);
+      margin-bottom: 16px;
+    }
+    .small {
+      margin-top: 10px;
+      font-size: 0.98rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* Appreciation list */
+    .appreciation-list {
+      text-align: left;
+      margin: 26px 0;
+      background: rgba(252,231,243,0.60);
+      padding: 24px;
+      border-radius: 22px;
+      border: 1px solid rgba(236,72,153,0.18);
+    }
+    .appreciation-item {
+      margin-bottom: 14px;
+      padding: 14px 14px;
+      background: var(--glass-strong);
+      border-radius: 16px;
+      box-shadow: 0 10px 22px rgba(0,0,0,0.06);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .appreciation-item:hover {
+      transform: translateX(8px);
+      box-shadow: 0 14px 34px rgba(236,72,153,0.18);
+    }
+    .badge {
+      min-width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      color: white;
+      background: linear-gradient(135deg, var(--hot), var(--red));
+      box-shadow: 0 10px 22px rgba(236,72,153,0.20);
+      margin-top: 2px;
+    }
+    .appreciation-item p {
+      color: #374151;
+      line-height: 1.65;
+      font-size: 1.03rem;
+    }
+
+    /* Buttons */
+    .btn {
+      font-family: "Poppins", sans-serif;
+      font-size: 1.25rem;
+      font-weight: 900;
+      padding: 16px 44px;
+      border: 0;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 14px 34px rgba(0,0,0,0.18);
+    }
+    .btn:active { transform: translateY(1px) scale(0.99); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--hot), var(--red));
+      color: white;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 18px 44px rgba(236,72,153,0.28);
+    }
+
+    .choice-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 22px;
+      position: relative;
+    }
+
+    .btn-yes {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: white;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.06); }
+    }
+    .btn-yes:hover { transform: scale(1.12) !important; animation: none; box-shadow: 0 18px 52px rgba(16,185,129,0.35); }
+
+    .btn-no {
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+      color: white;
+      transition: all 0.12s ease;
+      position: relative;
+    }
+    .btn-no:hover { transform: scale(1.05); }
+    .btn-no.running { position: fixed !important; z-index: 1000; }
+
+    /* Shake */
+    .shake { animation: shake 0.5s; }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+
+    /* Glow */
+    .glow { animation: glow 2.2s infinite; }
+    @keyframes glow {
+      0%, 100% { filter: drop-shadow(0 0 10px rgba(236,72,153,0.45)); }
+      50% { filter: drop-shadow(0 0 22px rgba(236,72,153,0.78)); }
+    }
+
+    /* Confetti */
+    .confetti {
+      position: fixed;
+      z-index: 9999;
+      pointer-events: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .progress-bar { width: 130px; }
+      h1 { font-size: 2.05rem; }
+      .subtitle { font-size: 1.35rem; }
+      .card { padding: 34px 22px; border-radius: 26px; }
+      .meme-img { max-width: 250px; height: 250px; }
+      .btn { font-size: 1.1rem; padding: 14px 34px; }
+      .appreciation-list { padding: 18px; }
+    }
+
+    /* Extra responsive tuning */
+
+/* Big desktop / wide screens */
+@media (min-width: 1100px) {
+  .card { max-width: 760px; }
+  h1 { font-size: 3.0rem; }
+  .subtitle { font-size: 1.65rem; }
+  .meme-img { max-width: 340px; height: 340px; }
+}
+
+/* 14-inch laptops (often 1366px wide + shorter height) */
+@media (max-width: 1400px) and (max-height: 900px) {
+  .frame { padding: 84px 18px 22px; }
+  .card { max-width: 640px; padding: 40px 30px; }
+  .meme-img { max-width: 290px; height: 290px; }
+  h1 { font-size: 2.35rem; }
+  .subtitle { font-size: 1.4rem; }
+}
+
+/* Smaller phones (tight space) */
+@media (max-width: 420px) {
+  .frame { padding: 86px 14px 18px; }
+  .card { padding: 28px 16px; border-radius: 22px; }
+  .meme-img { max-width: 220px; height: 220px; border-radius: 22px; }
+  h1 { font-size: 1.75rem; }
+  .subtitle { font-size: 1.18rem; }
+  .btn { width: 100%; padding: 14px 18px; font-size: 1.05rem; }
+  .choice-buttons { gap: 12px; }
+  .progress-bar { width: 112px; }
+  .pill { padding: 8px 10px; }
+}
+
+/* Short screens (landscape / small height) */
+@media (max-height: 700px) {
+  .frame { padding: 76px 16px 14px; }
+  .meme-img { max-width: 230px; height: 230px; }
+  h1 { font-size: 2.0rem; }
+}
+    
+  </style>
+</head>
+
+<body>
+  <div class="bg-gradient" id="bgGradient"></div>
+  <div class="floating-hearts" id="floatingHearts"></div>
+  <div class="particles" id="particles"></div>
+
+  <!-- HUD -->
+  <div class="hud">
+    <div class="pill progress-wrap">
+      <div class="progress-bar" aria-label="progress">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="progress-text" id="progressText">Scene 1 of 4</div>
+    </div>
+
+    <div class="pill">
+      <button class="sound-btn" id="soundToggle" type="button">
+        🔊 <span class="sound-state" id="soundState">Sound off</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Frame 1 -->
+  <div id="frame1" class="frame active">
+    <div class="card">
+      <div class="card-content">
+        <div class="meme-container">
+          <img id="meme1" src="assets/huh.gif" alt="Banana Cat Huh" class="meme-img" />
+        </div>
+
+        <h1>Wait a second...</h1>
+        <p class="subtitle">Something special is coming! 💭</p>
+
+        <div style="margin-top: 22px;">
+        <button class="btn btn-primary" onclick="goToFrame2()"><span>What is it? 🐾</span></button>
+        </div>
+
+        <p class="small" style="margin-top: 14px;">
+        Psst… turn on the sound button sa taas for full experience 🔊💗
+        </p>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Frame 2 -->
+  <div id="frame2" class="frame">
+    <div class="card">
+      <div class="card-content">
+        <div class="meme-container">
+          <img id="meme2" src="assets/cat-jump.gif" alt="Happy cat" class="meme-img" />
+        </div>
+
+        <h1>IT'S ALMOST VALENTINE'S DAY!! 💕</h1>
+        <p class="subtitle">And here's why I love you mwhehe...</p>
+
+        <div class="appreciation-list">
+          <div class="appreciation-item">
+            <div class="badge">1</div>
+            <p>
+              You make me the happiest person in the world. Looking at you reminds me that my past does not define me and I deserve the love and good things I experience now.
+            </p>
+          </div>
+
+          <div class="appreciation-item">
+            <div class="badge">2</div>
+            <p>
+              I love that we play HAHHAHAH labaw na when you play with me. I get the love stimulation I need everyday that makes me more realized I got the girl I prayed for.
+            </p>
+          </div>
+
+          <div class="appreciation-item" style="margin-bottom: 0;">
+            <div class="badge">3</div>
+            <p>
+              I love that you buy me good food, you also feed me well labaw when Im sad or got something to celebrate on.
+            </p>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" onclick="goToFrame3()"><span>So... ➡️</span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Frame 3 -->
+  <div id="frame3" class="frame">
+    <div class="card" id="frame3Card">
+      <div class="card-content">
+        <div class="meme-container">
+          <img id="frame3-meme" src="assets/romantice-cat.gif" alt="Pleading cat" class="meme-img glow" />
+        </div>
+
+        <h1 id="frame3-text">Will you be my Valentine habibi? 💝</h1>
+        <p class="subtitle" id="frame3-subtitle">Choose wisely... 😼</p>
+
+        <div class="choice-buttons">
+          <button class="btn btn-yes" onclick="handleYes()"><span>YES! 💚</span></button>
+          <button id="noButton" class="btn btn-no" onclick="handleNo()"><span>No</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Frame 4 -->
+  <div id="frame4" class="frame">
+    <div class="card" style="pointer-events:none;">
+      <div class="card-content">
+        <div class="meme-container">
+          <img id="meme4" src="assets/maxwell-the-cat.gif" alt="Maxwell spinning cat" class="meme-img" style="animation: spin 2s linear infinite;" />
+        </div>
+
+        <h1>🎉 YAY! 🎉</h1>
+        <p class="subtitle">I knew you'd say yes! 😻</p>
+
+        <h1 style="font-size: 1.9rem; margin-top: 12px;">
+          See you on the 14th my pookie! ❤️
+        </h1>
+
+        <p class="small" style="margin-top: 10px;">
+          &nbsp;
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ---------------------------
+// Audio system (Netlify-safe)
+// ---------------------------
+const audio = {
+  enabled: false,
+  unlocked: false,
+  sounds: {
+    // Scene sounds (your mp3s)
+    huh: new Audio("assets/music/huh2.mp3"),
+    happy: new Audio("assets/music/happy.mp3"),
+    letmeknow: new Audio("assets/music/letmeknow.mp3"),
+    maxwell: new Audio("assets/music/maxwell.mp3"),
+
+    // NO stages (your mp3s)
+    no1: new Audio("assets/music/banana-cry.mp3"),
+    no2: new Audio("assets/music/dramatic-cry.mp3"),
+    no3: new Audio("assets/music/mwehehe.mp3"),
+    no4: new Audio("assets/music/angry.mp3"),
+  }
+};
+
+const SCENE_KEYS = ["huh", "happy", "letmeknow", "maxwell"];
+const NO_KEYS = ["no1", "no2", "no3", "no4"];
+
+// track which bg scene is currently playing
+audio.currentSceneKey = null;
+
+// stop ONLY bg music (do not touch SFX)
+function stopSceneMusic(pauseOnly = false) {
+  SCENE_KEYS.forEach((k) => {
+    const s = audio.sounds[k];
+    try {
+      s.pause();
+      if (!pauseOnly) s.currentTime = 0;
+    } catch (e) {}
+  });
+}
+
+// stop ONLY the NO sounds (prevents overlap)
+function stopNoSounds() {
+  NO_KEYS.forEach((k) => {
+    const s = audio.sounds[k];
+    try {
+      s.pause();
+      s.currentTime = 0;
+    } catch (e) {}
+  });
+}
+
+
+// set volumes + preload
+Object.values(audio.sounds).forEach(a => {
+  a.volume = 0.85;
+  a.preload = "auto";
+});
+
+// Loop ONLY the scene background music
+["huh", "happy", "letmeknow", "maxwell"].forEach((key) => {
+  audio.sounds[key].loop = true;
+});
+
+// Make NO sounds one-shot (no loop)
+["no1", "no2", "no3", "no4"].forEach((key) => {
+  audio.sounds[key].loop = false;
+});
+
+
+// iPhone needs "unlock" from a user action
+function unlockAudio() {
+  if (audio.unlocked) return;
+  audio.unlocked = true;
+
+  // silently try play/pause one sound to unlock
+  const any = audio.sounds.huh;
+  try {
+    any.muted = true;
+    any.currentTime = 0;
+    any.play().then(() => {
+      any.pause();
+      any.currentTime = 0;
+      any.muted = false;
+    }).catch(() => {
+      any.muted = false;
+    });
+  } catch (e) {}
+}
+
+function stopAllSounds() {
+  Object.values(audio.sounds).forEach(s => {
+    try {
+      s.pause();
+      s.currentTime = 0;
+    } catch (e) {}
+  });
+}
+
+function playScene(key) {
+  if (!audio.enabled || !audio.unlocked) return;
+  const s = audio.sounds[key];
+  if (!s) return;
+
+  // stop any NO sounds when scene music starts
+  stopNoSounds();
+
+  // stop other scene tracks, then play this one
+  stopSceneMusic(false);
+  audio.currentSceneKey = key;
+
+  try {
+    s.currentTime = 0;
+    s.play().catch(() => {});
+  } catch (e) {}
+}
+
+
+function playSFX(key) {
+  if (!audio.enabled || !audio.unlocked) return;
+  const s = audio.sounds[key];
+  if (!s) return;
+
+  // If someone calls a scene key as SFX, route to playScene
+  if (SCENE_KEYS.includes(key)) {
+    playScene(key);
+    return;
+  }
+
+  // ✅ if it's a NO sound:
+  // 1) stop letmeknow (and any bg scene) so it doesn't keep playing
+  // 2) stop previous NO sound so it doesn't overlap
+  if (NO_KEYS.includes(key)) {
+    stopSceneMusic(true); // pause bg (do NOT reset time)
+    stopNoSounds();       // stop any previous NO SFX
+  }
+
+  try {
+    s.pause();
+    s.currentTime = 0;
+    s.play().catch(() => {});
+  } catch (e) {}
+
+  // ✅ optional but recommended:
+  // After the NO sound ends, resume the bg scene (letmeknow) IF you're still on frame3
+  if (NO_KEYS.includes(key)) {
+    s.onended = () => {
+      // only resume if still on frame 3
+      if (document.getElementById("frame3")?.classList.contains("active")) {
+        const resumeKey = audio.currentSceneKey || "letmeknow";
+        playScene(resumeKey);
+      }
+    };
+  }
+}
+
+
+
+function playCurrentSceneSound() {
+  if (!audio.enabled) return;
+
+  if (document.getElementById("frame1")?.classList.contains("active")) {
+    setTimeout(() => playScene("huh"), 120);
+  } else if (document.getElementById("frame2")?.classList.contains("active")) {
+    playScene("happy");
+  } else if (document.getElementById("frame3")?.classList.contains("active")) {
+    playScene("letmeknow");
+  } else if (document.getElementById("frame4")?.classList.contains("active")) {
+    playScene("maxwell");
+  }
+}
+
+
+
+    const soundToggle = document.getElementById("soundToggle");
+    const soundState = document.getElementById("soundState");
+
+soundToggle.addEventListener("click", () => {
+  unlockAudio();
+  audio.enabled = !audio.enabled;
+  soundState.textContent = audio.enabled ? "Sound on" : "Sound off";
+
+  // OFF = stop immediately
+  if (!audio.enabled) {
+    stopAllSounds();
+    return;
+  }
+
+  // ON = restart the correct scene sound
+  stopAllSounds();
+  playCurrentSceneSound();
+});
+
+
+    // ---------------------------
+    // Progress HUD
+    // ---------------------------
+    const progressFill = document.getElementById("progressFill");
+    const progressText = document.getElementById("progressText");
+    function setProgress(scene) {
+      const pct = [25, 50, 75, 100][scene - 1] || 25;
+      progressFill.style.width = pct + "%";
+      progressText.textContent = `Scene ${scene} of 4`;
+    }
+
+    // ---------------------------
+    // Hearts background
+    // ---------------------------
+    function createFloatingHearts() {
+      const container = document.getElementById("floatingHearts");
+      const hearts = ["💕","💖","💗","💝","💓","❤️","✨","🎀"];
+      for (let i = 0; i < 18; i++) {
+        const heart = document.createElement("div");
+        heart.className = "floating-heart";
+        heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+        heart.style.left = Math.random() * 100 + "%";
+        heart.style.top = Math.random() * 100 + "%";
+        heart.style.animationDelay = Math.random() * 5 + "s";
+        heart.style.fontSize = (Math.random() * 18 + 14) + "px";
+        container.appendChild(heart);
+      }
+    }
+
+    // ---------------------------
+    // Particles
+    // ---------------------------
+    function createParticles(...emojis) {
+      const container = document.getElementById("particles");
+      const numParticles = 22;
+      for (let i = 0; i < numParticles; i++) {
+        setTimeout(() => {
+          const p = document.createElement("div");
+          p.className = "particle";
+          p.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+          p.style.left = Math.random() * 100 + "%";
+          p.style.bottom = "0";
+          p.style.animationDelay = Math.random() * 0.4 + "s";
+          container.appendChild(p);
+          setTimeout(() => p.remove(), 3000);
+        }, i * 35);
+      }
+    }
+
+    // ---------------------------
+    // Frame switching
+    // ---------------------------
+    function switchFrame(currentId, nextId) {
+      const current = document.getElementById(currentId);
+      const next = document.getElementById(nextId);
+      current.classList.remove("active");
+      setTimeout(() => next.classList.add("active"), 90);
+    }
+
+    function setBgVibe(vibeClass) {
+      const bg = document.getElementById("bgGradient");
+      bg.classList.remove("bg-vibe-2", "bg-vibe-3", "bg-vibe-4");
+      if (vibeClass) bg.classList.add(vibeClass);
+    }
+
+function goToFrame2() {
+  unlockAudio();
+  setProgress(2);
+  setBgVibe("bg-vibe-2");
+  switchFrame("frame1", "frame2");
+  createParticles("🌸","🌺","💗","✨");
+
+  // switch scene music (looping)
+  playScene("happy");
+}
+
+
+
+function goToFrame3() {
+  unlockAudio();
+  setProgress(3);
+  setBgVibe("bg-vibe-3");
+  switchFrame("frame2", "frame3");
+  createParticles("💭","✨","💫","🎀");
+
+  playScene("letmeknow");
+}
+
+
+function goToFrame4() {
+  unlockAudio();
+  setProgress(4);
+  setBgVibe("bg-vibe-4");
+  switchFrame("frame3", "frame4");
+
+  setTimeout(() => {
+    playScene("maxwell");
+    launchConfetti();
+    createParticles("🎉","🎊","💖","😻","💝");
+  }, 260);
+}
+
+
+
+    // ---------------------------
+    // Confetti
+    // ---------------------------
+    function launchConfetti() {
+      const emojis = ["❤️","💕","💖","💗","💝","🐱","😻","🎀","🌹","💐","✨","🎉","🎊"];
+      const num = 90;
+
+      for (let i = 0; i < num; i++) {
+        setTimeout(() => {
+          const c = document.createElement("div");
+          c.className = "confetti";
+          c.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+          c.style.left = (Math.random() * window.innerWidth) + "px";
+          c.style.top = (window.innerHeight * 0.45) + "px";
+          c.style.fontSize = (Math.random() * 18 + 18) + "px";
+          document.body.appendChild(c);
+
+          const angle = Math.random() * Math.PI * 2;
+          const velocity = Math.random() * 300 + 220;
+          const duration = Math.random() * 1.8 + 2.0;
+
+          const endX = Math.cos(angle) * velocity;
+          const endY = Math.sin(angle) * velocity;
+
+          c.animate([
+            { transform: "translate(0,0) rotate(0deg)", opacity: 1 },
+            { transform: `translate(${endX}px, ${endY}px) rotate(${Math.random() * 720}deg)`, opacity: 0 }
+          ], { duration: duration * 1000, easing: "cubic-bezier(0.25, 0.46, 0.45, 0.94)" });
+
+          setTimeout(() => c.remove(), duration * 1000);
+        }, i * 14);
+      }
+    }
+
+    // ---------------------------
+    // No button story logic
+    // ---------------------------
+    let isNoButtonRunning = false;
+    let confirmationStage = 0; // 0 initial, 1 sure, 2 really sure, 3 error, 4 run away
+
+    function runAwayFromCursor(event) {
+      if (confirmationStage !== 4) return;
+
+      const button = document.getElementById("noButton");
+      const rect = button.getBoundingClientRect();
+
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+
+      const mouseX = event.clientX;
+      const mouseY = event.clientY;
+
+      const dx = centerX - mouseX;
+      const dy = centerY - mouseY;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+
+      if (dist < 200) {
+        const angle = Math.atan2(dy, dx);
+        const move = 210;
+
+        let newX = centerX + Math.cos(angle) * move;
+        let newY = centerY + Math.sin(angle) * move;
+
+        const pad = 86;
+        newX = Math.max(pad, Math.min(window.innerWidth - pad, newX));
+        newY = Math.max(pad, Math.min(window.innerHeight - pad, newY));
+
+        button.classList.add("running");
+        button.style.left = (newX - rect.width / 2) + "px";
+        button.style.top = (newY - rect.height / 2) + "px";
+        button.style.transform = "scale(0.96) rotate(" + (Math.random() * 28 - 14) + "deg)";
+
+        isNoButtonRunning = true;
+      }
+    }
+
+    function handleNo() {
+      const meme = document.getElementById("frame3-meme");
+      const text = document.getElementById("frame3-text");
+      const subtitle = document.getElementById("frame3-subtitle");
+      const noButton = document.getElementById("noButton");
+      const yesButton = document.querySelector(".btn-yes");
+      const card = document.getElementById("frame3Card");
+
+      card.classList.add("shake");
+      setTimeout(() => card.classList.remove("shake"), 520);
+
+      if (confirmationStage === 0) {
+        confirmationStage = 1;
+        playSFX("no1");
+        text.textContent = "Are you sure??";
+        subtitle.textContent = "Think carefully now...";
+        meme.src = "assets/cat-crying-cat.gif";
+
+        noButton.querySelector("span").textContent = "Yes, I'm sure.";
+        yesButton.querySelector("span").textContent = "Wait, maybe I will 💚";
+        createParticles("💔","😢","😿");
+
+      } else if (confirmationStage === 1) {
+        confirmationStage = 2;
+        playSFX("no2");
+        text.textContent = "Are you REALLY REALLY sure??";
+        subtitle.textContent = "Last chance to reconsider...";
+        meme.src = "assets/the-voices.gif";
+
+        noButton.querySelector("span").textContent = "Yes, I'm sure.";
+        yesButton.querySelector("span").textContent = "Wait, maybe I will 💚";
+        createParticles("💔","😭","😿");
+
+      } else if (confirmationStage === 2) {
+        confirmationStage = 3;
+        playSFX("no3");
+        text.textContent = "ERROR: WRONG ANSWER! ❤️";
+        subtitle.textContent = "Okay, let's try this again...";
+        meme.src = "assets/cat-meme-hehehe.gif";
+        createParticles("😹","🔥","💢");
+
+        setTimeout(() => {
+          confirmationStage = 4;
+          playSFX("no4");
+          text.textContent = "Will you be my Valentine? 💝";
+          subtitle.textContent = "Try to click No... I dare you! 😤";
+          meme.src = "assets/sus-cat-cat-sus.gif";
+
+          noButton.querySelector("span").textContent = "No";
+          yesButton.querySelector("span").textContent = "YES! 💚";
+
+          noButton.addEventListener("mousemove", runAwayFromCursor);
+          noButton.addEventListener("mouseenter", runAwayFromCursor);
+        }, 5000);
+      }
+    }
+
+    function handleYes() {
+      goToFrame4();
+    }
+
+    // Global tracking for stage 4
+    document.addEventListener("mousemove", (event) => {
+      if (confirmationStage === 4) runAwayFromCursor(event);
+    });
+
+    // Reset on resize if running
+    window.addEventListener("resize", () => {
+      const noButton = document.getElementById("noButton");
+      if (isNoButtonRunning && confirmationStage === 4) {
+        noButton.classList.remove("running");
+        noButton.style.position = "relative";
+        noButton.style.left = "auto";
+        noButton.style.top = "auto";
+        isNoButtonRunning = false;
+      }
+    });
+
+    // Cute: small "meow" on meme click
+    function bindMemeMeow(id, soundKey) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.addEventListener("click", () => playSFX(soundKey));
+    }
+
+
+    window.addEventListener("load", () => {
+      createFloatingHearts();
+      setBgVibe("bg-vibe-1");
+      setProgress(1);
+      bindMemeMeow("meme1", "huh");
+bindMemeMeow("meme2", "happy");
+bindMemeMeow("meme4", "maxwell");
+
+
+      if (audio.enabled && audio.unlocked) playScene("huh");
+
+    });
+  </script>
+</body>
+</html>
